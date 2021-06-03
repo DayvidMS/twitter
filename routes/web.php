@@ -22,4 +22,7 @@ Route::get('/', function (){
 Route::post('/twittar', [TwitterController::class,'store']);
 //verifica se está registrado e logado e envia para página principal
 Route::get('/dashboard', [TwitterController::class,'index'])->middleware('auth');
-
+//Retorna a página de twitter do usuario selecionado e mostra apenas os twitters do usuario
+Route::get('/usuario/{id}',[TwitterController::class,'show']);
+//Faz a ação para comentario.
+Route::post('/twittar/comentario',[TwitterController::class,'salvaComentario']);

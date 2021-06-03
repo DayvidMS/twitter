@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 
@@ -32,6 +33,28 @@ class TwitterController extends Controller
 
         $twitter->twitterText = $request->twitt;
         $twitter->user_id = $user->id;
+
+        $twitter->save();
+        return redirect('/dashboard')->with('msg','Twitter realizado');
+    }
+
+    public function show($id){
+        //essa função vai ser para retornar a página inicial apenas com os twitters do usuario
+
+        $user = User::findOrFail($id);
+
+        $twitter = Twitter::where('user_id','=',$id)->get();
+
+        return view('twits.profile', ['twitter' => $twitter, 'users' => $user]);
+
+    }
+
+    public function salvaComentario(Request $request){
+        $twitter = new Twitter();
+        $user = auth()->user();
+
+        $twitter->twitterText = $request->twitt;
+
 
         $twitter->save();
         return redirect('/dashboard')->with('msg','Twitter realizado');
