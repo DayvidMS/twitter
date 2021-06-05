@@ -3,9 +3,13 @@
 <div class="topo-publicacoes w-clearfix">
     <div class="div-perfil">
         <p class="nome-perfil">{{ $users->name }}</p>
-        <a href="#" class="botao-seguir w-inline-block">
-            <p class="seguir">seguir</p>
-        </a>
+        <form name="formSeguir">
+            <a href="#" class="botao-seguir w-inline-block" >
+                <p>seguir</p>
+            </a>
+            <input type="hidden" name="seguir" value="{{$users->id}}">
+            <input type="hidden" name="seguidor" value="{{$user_connect->id}}">
+        </form>
         <form action="/logout" method="POST">
             @csrf
             <a href="/logout" class="botao-sair w-inline-block"
@@ -16,6 +20,7 @@
             </a>
         </form>
     </div>
+{{--    {{dd($user_connect)}}--}}
     <div class="div-feed">
         <div class="container-publicacoes">
             <div class="bloco-publicacao">

@@ -43,9 +43,11 @@ class TwitterController extends Controller
 
         $user = User::findOrFail($id);
 
+        $user_conectado = auth()->user();
+
         $twitter = Twitter::where('user_id','=',$id)->get();
 
-        return view('twits.profile', ['twitter' => $twitter, 'users' => $user]);
+        return view('twits.profile', ['twitter' => $twitter, 'users' => $user, 'user_connect' => $user_conectado]);
 
     }
 

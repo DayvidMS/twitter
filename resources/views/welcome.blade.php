@@ -3,9 +3,7 @@
 <div class="topo-publicacoes w-clearfix">
     <div class="div-perfil">
         <p class="nome-perfil">{{ $users->name }}</p>
-        <a href="#" class="botao-seguir w-inline-block">
-            <p class="seguir">seguir</p>
-        </a>
+
 
         <form action="/logout" method="POST">
             @csrf
