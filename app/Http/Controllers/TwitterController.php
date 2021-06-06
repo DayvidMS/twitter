@@ -9,6 +9,7 @@ use Illuminate\Support\Collection;
 use App\Models\Twitter;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
+use App\Models\User_Seguidores;
 
 class TwitterController extends Controller
 {
@@ -42,12 +43,14 @@ class TwitterController extends Controller
         //essa função vai ser para retornar a página inicial apenas com os twitters do usuario
 
         $user = User::findOrFail($id);
-
         $user_conectado = auth()->user();
-
         $twitter = Twitter::where('user_id','=',$id)->get();
-
-        return view('twits.profile', ['twitter' => $twitter, 'users' => $user, 'user_connect' => $user_conectado]);
+        $seguidor = User_Seguidores::where(
+            ['user_seguidor' => $user_conectado->id,
+            'user_seguido' => $user->id]
+        )->get();
+//        dd($seguidor);
+        return view('twits.profile', ['twitter' => $twitter, 'users' => $user, 'user_connect' => $user_conectado,'segue' => $seguidor]);
 
     }
 
@@ -60,5 +63,17 @@ class TwitterController extends Controller
 
         $twitter->save();
         return redirect('/dashboard')->with('msg','Twitter realizado');
+    }
+
+    public function seguir(Request $request){
+        $seguidor = new User_Seguidores();
+
+//        dd($request->seguidor);
+        $seguidor->user_seguidor = $request->seguidor;
+        $seguidor->user_seguido = $request->seguir;
+
+
+        $seguidor->save();
+        return view('twits.profile');
     }
 }

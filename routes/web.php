@@ -26,3 +26,5 @@ Route::get('/dashboard', [TwitterController::class,'index'])->middleware('auth')
 Route::get('/usuario/{id}',[TwitterController::class,'show']);
 //Faz a ação para comentario.
 Route::post('/twittar/comentario',[TwitterController::class,'salvaComentario']);
+//faz a ação para seguir um usuario, feito com o ajax
+Route::post('/seguir',[TwitterController::class,'seguir']);
