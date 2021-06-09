@@ -74,6 +74,17 @@ class TwitterController extends Controller
 
 
         $seguidor->save();
-        return view('twits.profile');
+
+        $retorno = 'Salvo';
+        $retorno = json_encode($retorno);
+        return $retorno;
+    }
+    public function ufollow(Request $request){
+
+        $user = auth()->user();
+
+
+
+        return $retorno;
     }
 }

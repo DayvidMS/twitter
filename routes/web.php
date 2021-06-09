@@ -27,4 +27,6 @@ Route::get('/usuario/{id}',[TwitterController::class,'show']);
 //Faz a ação para comentario.
 Route::post('/twittar/comentario',[TwitterController::class,'salvaComentario']);
 //faz a ação para seguir um usuario, feito com o ajax
-Route::post('/seguir',[TwitterController::class,'seguir']);
+Route::post('/seguir',[TwitterController::class,'seguir'])->middleware('auth');
+//Ação para dar Ufollow no usuario selecionado, requisição com AJAX
+Route::delete('/ufollow',[TwitterController::class,'ufollow'])->middleware('auth');

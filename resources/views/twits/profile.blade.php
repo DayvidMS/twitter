@@ -6,22 +6,23 @@
 {{--            {{dd($segue)}}--}}
 {{--            {{dd($twitter)}}--}}
             @if(count($segue) == 0)
-                <form id="formSeguir" name="formSeguir">
+                <form id="formSeguir" name="formSeguir" method="post">
                     @csrf
-                    <button class="botao-seguir w-inline-block" type="submit">
-                        <span id="mudaBotao">seguir</span>
+                    <button class="botao-seguir w-inline-block">
+                        seguir
                     </button>
                     <input type="hidden" id="seguido" name="seguir" value="{{$users->id}}">
                     <input type="hidden" id="seguidor" name="seguidor" value="{{$user_connect->id}}">
                 </form>
             @else
-                <form id="formUfoloow" name="formSeguir">
+                <form id="formUfoloow" name="formUfollow" method="post">
                     @csrf
-                    <button class="botao-seguir w-inline-block" type="submit">
+                    @method('DELETE')
+                    <button class="botao-ufollow w-inline-block" >
                         Ufollow
                     </button>
-                    {{--                <input type="hidden" id="seguido" name="seguir" value="{{$users->id}}">--}}
-                    {{--                <input type="hidden" id="seguidor" name="seguidor" value="{{$user_connect->id}}">--}}
+                                    <input type="hidden" id="seguido" name="seguir" value="{{$users->id}}">
+                                    <input type="hidden" id="seguidor" name="seguidor" value="{{$user_connect->id}}">
                 </form>
             @endif
             <form action="/logout" method="POST">
