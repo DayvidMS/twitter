@@ -19,7 +19,7 @@
         <div class="container-publicacoes">
             <div class="bloco-publicacao">
                 <div class="w-form">
-                    <form action="/twittar" method="POST">
+                    <form action="/twittar" method="GET">
                         @csrf
                         <textarea placeholder="Texto da Publicação" maxlength="5000" id="twitt" name="twitt" class="texto-publicar w-input">
                         </textarea>
